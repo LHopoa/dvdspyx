@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="appIcon.png" type="image/x-icon">
+    <title>Dv短视频</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('l.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        h2 {
+            text-align: center;
+            color: #E8FFE8;
+            margin: 0px 0 0px 0;
+              font-size: 8px; 
+        }
+
+        h3 {
+            text-align: center;
+            margin: 10px 0;
+            color: #FFFFFF;
+          }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            gap: 1px;
+            margin-bottom: 2px;
+                }
+
+        .image {
+            text-align: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .image p {
+            text-align: center;
+            -webkit-text-fill-color: white;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #FFFFFF;
+        }
+
+        .image img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid black;
+            transition: border 0.5s;
+        }
+
+        .image .text {
+            position: relative;
+            top: -95px;
+            right: -35px;
+            transform: rotate(-45deg);
+            color: black;
+            font-size: 1px;
+            text-align: left;
+            -webkit-text-fill-color: white;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #D1FFF3;
+            transition: font-size 1s;
+        }
+
+        .image.active img {
+            border: 2px solid red;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        .image.active .text {
+            color: white;
+            font-size: 2px;
+            -webkit-text-fill-color: white;
+            /* 设置文字颜色为白色 */
+            -webkit-text-stroke-width: 1px;
+            /* 描边宽度 */
+            -webkit-text-stroke-color: #FFFFFF;
+            /* 描边颜色 */
+
+        }
+
+        .video {
+            margin: auto;
+            width: 300px;
+            height: 400px;
+        }
+
+        .video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(-3deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(-3deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>提示:如果你觉得这是一个糟透的项目，请你必要的发送邮件给我们，投诉越多，我们会取消这个项目。
+   -lhopoa@foxmail.com-. \我们也觉得这种视频类型不好，请你发送你的投诉，以便于我们做出坚定的选择。来源于:领函云箱</h2>
+    <div class="header">
+        <div class="image" onclick="activateImage(1)">
+            <img src="1.jpg">
+            <p>Dv1</p>
+            <p class="text"></p>
+        </div>
+        <div class="image" onclick="activateImage(2)">
+            <img src="2.jpg">
+            <p>Dv2</p>
+            <p class="text"></p>
+        </div>
+        <div class="image" onclick="activateImage(3)">
+            <img src="3.jpg">
+            <p>Dv3</p>
+            <p class="text"></p>
+        </div>
+        <div class="image" onclick="activateImage(4)">
+            <img src="4.jpg">
+            <p>Dv4</p>
+            <p class="text"></p>
+        </div>
+    </div>
+
+    <h3>If you think this is a piece of garbage. You can send feedback to our mailbox. If we get a lot of complaints, we will cancel this. </h3>#FFFFFF
+
+    <div class="video">
+        <video id="video-player" controls autoplay="autoplay" preload="auto" loop="loop" poster="d.png"></video>
+    </div>
+
+    <script>
+        // 获取图片元素
+        let images = document.querySelectorAll('.image');
+
+        // 默认激活第一个图片
+        activateImage(1);
+
+        function activateImage(index) {
+            // 清除所有图片的选中状态
+            images.forEach(function(image) {
+                image.classList.remove('active');
+                image.querySelector('.text').style.fontSize = '14px';
+            });
+
+            // 添加当前点击的图片选中状态
+            let image = images[index - 1];
+            image.classList.add('active');
+            image.querySelector('.text').style.fontSize = '18px';
+
+            // 设置视频
+            let video = document.getElementById('video-player');
+            video.src = 'https://api.woeo.net/API/api-girl/index.php?type=mp4';
+            video.play();
+
+            // 关闭前面播放的视频
+            let previousVideo = document.querySelector('.video video');
+            if (previousVideo && previousVideo !== video) {
+                previousVideo.pause();
+            }
+        }
+    </script>
+</body>
+
+</html>
